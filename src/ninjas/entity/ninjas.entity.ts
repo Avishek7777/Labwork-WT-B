@@ -22,4 +22,7 @@ export class Ninja {
 
   @Column({ default: true })
   available: boolean;
+
+  @Column({ nullable: true })
+  cv: string;
 }

@@ -34,4 +34,12 @@ export class NinjasService {
   async remove(id: number): Promise<void> {
     await this.ninjaRepo.delete(id);
   }
+  async attachCv(id: number, filename: string): Promise<any> {
+    const ninja = await this.ninjaRepo.findOneBy({ id });
+    if (!ninja) {
+      throw new Error('Ninja not found');
+    }
+    ninja.cv = filename;
+    return this.ninjaRepo.save(ninja);
+  }
 }
