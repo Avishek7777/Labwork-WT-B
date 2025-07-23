@@ -1,6 +1,14 @@
+import { IsBoolean, IsEnum, IsOptional, IsString } from 'class-validator';
+import { NinjaRank } from '../entity/ninjas.entity';
+
 export class CreateNinjaDto {
-    name: string;
-    age: number;
-    rank: string;
-    village: string;
+  @IsString()
+  name: string;
+
+  @IsEnum(NinjaRank)
+  rank: NinjaRank;
+
+  @IsOptional()
+  @IsBoolean()
+  available?: boolean;
 }

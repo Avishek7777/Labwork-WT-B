@@ -7,22 +7,27 @@ import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user/entities/user.entity';
 import { FighterModule } from './fighter/fighter.module';
+import { Ninja } from './ninjas/entity/ninjas.entity';
 
 @Module({
-  imports: [NinjasModule, AdminModule, UserModule, TypeOrmModule.forRoot({
-    type: 'postgres',
-    host: 'localhost',
-    port: 5432,
-    username: 'postgres',
-    password: 'password',
-    entities: [],
-    database: 'pgWithNest',
-    synchronize: true,
-    logging: true,
-  }),
-  UserModule,
-  FighterModule,
-],
+  imports: [
+    NinjasModule,
+    AdminModule,
+    UserModule,
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'avishek',
+      entities: [Ninja],
+      database: 'testDb',
+      synchronize: true,
+      logging: true,
+    }),
+    UserModule,
+    FighterModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

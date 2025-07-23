@@ -43,7 +43,8 @@ export class UserService {
     return this.userRepository.save(user);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async removeUser(id: number): Promise<{ affected?: number }> {
+    const result = await this.userRepository.delete(id);
+    return { affected: result.affected ?? undefined };
   }
 }
